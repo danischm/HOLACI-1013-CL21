@@ -1,0 +1,35 @@
+---
+- name: MSO sites
+  hosts: msohosts
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Add SFO site
+    cisco.mso.mso_site:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      site: San Francisco
+      #description: San Francisco
+      apic_username: admin
+      apic_password: C1sco12345
+      apic_site_id: '1'
+      urls:
+      - https://apic1-a.dcloud.cisco.com
+      validate_certs: no
+      state: present
+
+  - name: Add NY site
+    cisco.mso.mso_site:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      site: New York
+      apic_username: admin
+      apic_password: C1sco12345
+      apic_site_id: '2'
+      urls:
+      - https://apic1-b.dcloud.cisco.com
+      validate_certs: no
+      state: present

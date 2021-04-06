@@ -1,0 +1,20 @@
+---
+- name: Create a Tenant in MSO
+  hosts: msohosts
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Add a new tenant
+    cisco.mso.mso_tenant:
+      hostname: "{{ inventory_hostname }}"
+      username: "{{ username }}"
+      password: "{{ password }}"
+      tenant: Tesla
+      display_name: Tesla
+      description: This creates a Tenant Tesla
+      sites:
+      - San Francisco
+      - New York
+      validate_certs: no
+      state: present
